@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { HeroService } from "./hero.service";
 
 @Component({
@@ -7,12 +7,10 @@ import { HeroService } from "./hero.service";
   styleUrls: ["./heroes.container.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroesContainer implements OnInit {
+export class HeroesContainer {
   heroes$ = this.heroService.heroes$;
 
   constructor(private heroService: HeroService) {}
-
-  ngOnInit(): void {}
 
   addHero(heroName: string): void {
     this.heroService.addHero(heroName);

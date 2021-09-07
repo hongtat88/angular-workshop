@@ -60,10 +60,91 @@ heroes
 3. `npm install`
 4. `npm start`
 
-> You could always find the final solution in `smart-and-dumb-components\final` directory.
+> 📝 Note: You could always find the final solution in `smart-and-dumb-components\final` directory.
 
 ### Extract a Container and Presentational Component out of a Mixed Component
-1. First, generate a new container component:
+
+1. First, let's generate a new container component:
+
 ```
-ng generate component heroes/heroes --skip-tests --flat --type=container --dry-run
+ng generate component heroes/heroes --skip-tests  --flat --type=container --selector=app-heroes-container
 ```
+
+2. Open the newly created container component and import the `heroService` in the constructor.
+
+```
+constructor(private heroService: HeroService) {}
+```
+
+3. Create a new `heroes$` Observable that will be use in `heroes.component` presentation component later.
+
+```
+heroes$ = this.heroService.heroes$;
+```
+
+4. Create a new function for `addHero()` action.
+
+```
+addHero(heroName: string): void {
+    this.heroService.addHero(heroName);
+}
+```
+
+5. Now, we could apply the `OnPush` change detection strategy at the `@Component()` decorator.
+
+```
+changeDetection: ChangeDetectionStrategy.OnPush
+```
+
+6. Open the `heroes.container.html`, and change it to use the existing `heroes.component` and that will be the new presentational component.
+
+```
+<app-heroes
+  *ngIf="heroes$ | async as heroes"
+  [heroes]="heroes"
+  (onAddHero)="addHero($event)"
+></app-heroes>
+```
+
+7. Go to `app.component.html` and change to use the container component instead:
+
+```
+<app-heroes-container></app-heroes-container>
+
+```
+
+8. We are at the half way, now let's move on to the `heroes.component.ts` which is the new presentational component.
+
+9. At the `heroes.component.ts`, let's create a new `@Input()` decorator that will be providing data into this presentational component.
+
+```
+@Input() heroes!: Hero[];
+```
+
+10. Then, let's create a new `@Output()` decorator that responsible to notify container component that it wants to add a new hero to the table.
+
+```
+@Output() onAddHero = new EventEmitter<string>();
+```
+
+11. We now could remove the existing `heroes$` Observable since the data now flows in through the `@Input() heroes$` decorator.
+
+12. At the `addHero()` function, instead of calling the `heroService` directly to add the new hero. Now we could emit the `@Output() onAddHero` instead:
+
+```
+addHero(heroForm: NgForm): void {
+    this.onAddHero.emit(heroForm.value.name);
+}
+```
+
+13. We can now remove the `heroService` dependency at the constructor.
+
+14. Let's apply the `OnPush` change detection strategy at the `@Component()` decorator as well.
+
+```
+changeDetection: ChangeDetectionStrategy.OnPush
+```
+
+15. The final piece of the puzzle, let's open up the `heroes.component.html` and remove the `heroes$ | async` Observable and the `*ngIf` directive. Because we no longer rely on this.
+
+16. And that's it! We successfully converted it to using the container and presentational components `ng serve` the project and it should works just like before.
