@@ -1,0 +1,24 @@
+<h1>Heroes</h1>
+
+<form novalidate #heroForm="ngForm">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Hero</mat-label>
+    <input matInput [(ngModel)]="newHero.name" name="name" />
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="addHero(heroForm)">
+    Add Hero
+  </button>
+</form>
+
+<div class="table-container">
+  <table mat-table [dataSource]="heroes" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
