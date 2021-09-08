@@ -18,6 +18,7 @@
 
 ### Prerequisite
 
-## Validation
-
-## Form Array
+1. `git clone https://github.com/hongtat88/angular-workshop.git`
+2. Navigate into `reactive-forms\starter-kit` directory
+3. `npm install`
+4. `npm start`
