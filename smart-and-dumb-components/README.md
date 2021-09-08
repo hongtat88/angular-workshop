@@ -17,7 +17,6 @@ Container component can be think of it is like shipping containers:
 - Connect to the presentational component with data bindings.
 - Apply the `OnPush` change detection strategy.
 - Deals with the the application state management (NgRx) and persistence layers (services) with dependency injection.
--
 
 ## Presentational Component
 
