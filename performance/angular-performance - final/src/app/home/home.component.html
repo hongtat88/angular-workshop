@@ -1,0 +1,37 @@
+<main class="container">
+  <article class="row mb-3">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="completeFirstItem()"
+        >
+          Complete the first item!
+        </button>
+        <input
+          type="text"
+          class="form-control"
+          id="searchInput"
+          [formControl]="searchFormControl"
+          (keydown.enter)="search()"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="search()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </article>
+  <article class="row">
+    <app-todo-item
+      class="col-lg-3 mb-3"
+      *ngFor="let todoItem of todoList"
+      [todoItem]="todoItem"
+    >
+    </app-todo-item>
+  </article>
+</main>
