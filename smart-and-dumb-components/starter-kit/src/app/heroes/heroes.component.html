@@ -11,7 +11,7 @@
   </button>
 </form>
 
-<div class="table-container" *ngIf="heroes$ | async as heroes">
+<div class="table-container" *ngIf="heroes">
   <table mat-table [dataSource]="heroes" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>

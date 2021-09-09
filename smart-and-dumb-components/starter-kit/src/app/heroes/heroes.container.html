@@ -1,0 +1,4 @@
+<app-heroes
+  [heroes]="heroes$ | async"
+  (onAddHero)="addHero($event)"
+></app-heroes>

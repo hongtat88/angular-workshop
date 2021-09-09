@@ -1,21 +1,28 @@
-import { Component } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { Hero } from "./hero.model";
-import { HeroService } from "./hero.service";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Hero } from './hero.model';
 
 @Component({
-  selector: "app-heroes",
-  templateUrl: "./heroes.component.html",
-  styleUrls: ["./heroes.component.scss"],
+  selector: 'app-heroes',
+  templateUrl: './heroes.component.html',
+  styleUrls: ['./heroes.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent {
-  heroes$ = this.heroService.heroes$;
-  newHero = new Hero();
-  displayedColumns: string[] = ["name"];
+  @Input() heroes!: Hero[] | null;
 
-  constructor(private heroService: HeroService) {}
+  @Output() onAddHero = new EventEmitter<string>();
+
+  newHero = new Hero();
+  displayedColumns: string[] = ['name'];
 
   addHero(heroForm: NgForm): void {
-    this.heroService.addHero(heroForm.value.name);
+    this.onAddHero.emit(heroForm.value.name);
   }
 }

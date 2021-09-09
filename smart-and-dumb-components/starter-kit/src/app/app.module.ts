@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeroesComponent } from "./heroes/heroes.component";
+import { HeroesContainer } from './heroes/heroes.container';
 
 @NgModule({
-  declarations: [AppComponent, HeroesComponent],
+  declarations: [AppComponent, HeroesComponent, HeroesContainer],
   imports: [
     BrowserModule,
     AppRoutingModule,

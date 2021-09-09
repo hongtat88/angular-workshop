@@ -1,0 +1,80 @@
+<div class="p-3 w-50">
+  <h1>Hero Form</h1>
+
+  <form [formGroup]="heroForm">
+    <div class="mb-3">
+      <label class="form-label">Hero Name:</label>
+      <input type="text" class="form-control" formControlName="heroName" />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        heroForm.controls.heroName.touched && heroForm.controls.heroName.errors
+      "
+    >
+      <div *ngIf="heroForm.controls.heroName.errors.required">
+        Hero name is required
+      </div>
+      <div *ngIf="heroForm.controls.heroName.errors.heroNameTaken">
+        Hero name is taken
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Power Level:</label>
+      <input type="number" class="form-control" formControlName="powerLevel" />
+    </div>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        heroForm.controls.powerLevel.touched &&
+        heroForm.controls.powerLevel.errors
+      "
+    >
+      <div *ngIf="heroForm.controls.powerLevel.errors.range">
+        Hero power level must be between
+        {{ heroForm.controls.powerLevel.errors.range.min }} to
+        {{ heroForm.controls.powerLevel.errors.range.max }}
+      </div>
+    </div>
+
+    <div class="mb-3" formArrayName="powersAndAbilities">
+      <label class="form-label">Powers and Abilities:</label>
+      <button
+        type="submit"
+        class="btn btn-secondary ms-3 mb-1"
+        (click)="addPowerAndAbility()"
+      >
+        Add
+      </button>
+
+      <div
+        *ngFor="let powerAndAbility of powersAndAbilities.controls; index as i"
+      >
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" [formControlName]="i" />
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="deletePowerAndAbility(i)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-auto">
+      <button
+        type="submit"
+        class="btn btn-primary mb-3"
+        [disabled]="heroForm.invalid"
+        (click)="addHero()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+
+  <pre>{{ heroForm.value | json }}</pre>
+</div>
