@@ -7,7 +7,14 @@
 
 ## Topics
 
-1. Smart and dump components
+1. Performance
+    - lazy load
+    - preloading
+    - quicklink
+    - onpush
+    - prod mode
+
+1. Smart and dumb components
     - communication between components
     - facade
     - Extra: push architecture - https://thomasburlesonia.medium.com/push-based-architectures-with-rxjs-81b327d7c32d
@@ -17,13 +24,6 @@
     - validation
     - error handling
     - CVA
-
-1. Performance
-    - lazy load
-    - preloading
-    - quicklink
-    - onpush
-    - prod mode
 
 1. MSAL
     - Azure active directory
