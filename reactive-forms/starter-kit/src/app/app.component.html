@@ -1,0 +1,33 @@
+<div class="p-3 w-50">
+  <h1>Hero Form</h1>
+
+  <form>
+    <div class="mb-3">
+      <label class="form-label">Hero Name:</label>
+      <input type="text" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Power Level:</label>
+      <input type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3" formArrayName="powersAndAbilities">
+      <label class="form-label">Powers and Abilities:</label>
+      <button type="submit" class="btn btn-secondary ms-3 mb-1">Add</button>
+
+      <div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" />
+          <button class="btn btn-outline-secondary" type="button">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </div>
+  </form>
+</div>

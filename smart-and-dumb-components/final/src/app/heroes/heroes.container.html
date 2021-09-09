@@ -1,0 +1,5 @@
+<app-heroes
+  *ngIf="heroes$ | async as heroes"
+  [heroes]="heroes"
+  (onAddHero)="addHero($event)"
+></app-heroes>

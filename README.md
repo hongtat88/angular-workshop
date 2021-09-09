@@ -30,4 +30,9 @@
     - msal package
 
 
+## Folder structure
+- Topic
+    - Starter Kit
+    - Final 
+    - README.md
 
